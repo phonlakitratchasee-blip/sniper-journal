@@ -134,29 +134,40 @@ export default function TradingJournalApp() {
               </tr>
             </thead>
 
-            <tbody>
-              {trades.map((trade, index) => (
-                <tr
-                  key={index}
-                  className="border-b border-zinc-800 hover:bg-zinc-800/40"
-                >
-                  <td className="py-4">{trade.pair}</td>
-                  <td className="py-4">{trade.bias}</td>
-                  <td className="py-4">{trade.setup}</td>
-                  <td className="py-4">{trade.rr}</td>
-                  <td className="py-4">{trade.session}</td>
-                  <td
-                    className={`py-4 font-semibold ${
-                      trade.result === 'Win'
-                        ? 'text-green-400'
-                        : 'text-red-400'
-                    }`}
-                  >
-                    {trade.result}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+           <tbody>
+  {trades.length === 0 ? (
+    <tr>
+      <td
+        colSpan="6"
+        className="py-6 text-center text-zinc-500"
+      >
+        No trades yet
+      </td>
+    </tr>
+  ) : (
+    trades.map((trade, index) => (
+      <tr
+        key={index}
+        className="border-b border-zinc-800 hover:bg-zinc-800/40"
+      >
+        <td className="py-4">{trade.pair}</td>
+        <td className="py-4">{trade.bias}</td>
+        <td className="py-4">{trade.setup}</td>
+        <td className="py-4">{trade.rr}</td>
+        <td className="py-4">{trade.session}</td>
+        <td
+          className={`py-4 font-semibold ${
+            trade.result === 'Win'
+              ? 'text-green-400'
+              : 'text-red-400'
+          }`}
+        >
+          {trade.result}
+        </td>
+      </tr>
+    ))
+  )}
+</tbody>
           </table>
         </div>
 
